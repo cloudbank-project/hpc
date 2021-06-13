@@ -40,7 +40,28 @@ See more [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/s
 
 The `pcluster configure` process has created a Cloud formation stack file called `config` that resides in `~/.parallelcluster`. 
 It is a good idea to read through this (brief) file to see the correspondence between content and the values given in the previous step.
+The procedural now instructs us to modify this file using a text editor to include some additional parameters.
+   
+* Edit the CloudFormation template file `config` (warning this is a bit arduous)
+   * Add three lines under `[cluster default]` and also modify `queue_settings` to be `computer,mesh`
+   * Add an entire section called `[fsx fsxshared]`
+   * Add a short section called `[dcv default]`
+   * Modify/extend `[queue compute]` as shown
+   * Modify `[compute_resource default]`
+   * Add `[queue mesh]`
+   * Add `[compute_resource defaultmesh]`
    
    
+There follows some explanation of these additions to `config`. Of particular interest is the section onf **FSx for Lustre**
+with more content referenced [here](https://aws.amazon.com/fsx/lustre/). **FSx for Lustre** is high-performance scalable storage.
+FSx filesystems can also be linked to S3 buckets. 
+   
+
+
+   
+
+   
+   
+
 
 
