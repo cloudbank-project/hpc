@@ -2,7 +2,10 @@
 
 This document is notes on building an HPC cluster on AWS.
 
-# Get started notes
+# Procedural notes
+
+## Stepping to the starting point
+
 
 * Started at [this page](https://aws.amazon.com/hpc/getting-started/) as the root of AWS HPC
 * Sub-selected [this page](https://workshops.aws/categories/HPC) as categorized types of HPC
@@ -10,7 +13,9 @@ This document is notes on building an HPC cluster on AWS.
 
 This CFD tutorial breaks down into eight sections. The first two are introductory so I skip them. This narrative begins with topic 3, "Create a HPC Cluster".
 
-# Topic 3: [Create a HPC Cluster](https://cfd-on-pcluster.workshop.aws/hpccluster/hpc-ssh.html)
+## Section 3: [Create a HPC Cluster](https://cfd-on-pcluster.workshop.aws/hpccluster/hpc-ssh.html)
+
+### Page 1 of section 3: Getting an ssh key
 
 * A "cloud shell" is available on the AWS Console so I will use that. 
     * The idea here is that the aws command line application **`aws`** can be installed and run in a `bash` environment
@@ -21,7 +26,7 @@ This CFD tutorial breaks down into eight sections. The first two are introductor
     * I used `chmod 400` on it
     * I downloaded a local copy
 
-Moving on to page 2 of topic 3.
+### Page 2 of section 3: Installing `pcluster`
 
 * I installed **`pcluster`**; necessary packages `botocore, s3transfer, boto3, tabulate, ipaddress, aws-parallelcluster`. One warning.
     * `pcluster version` gives 2.10.2 and `pcluster -h` gives a lengthy help message: ok
@@ -36,7 +41,7 @@ Moving on to page 2 of topic 3.
 > Jargon <BR>
 > **VPC**: Virtual Private Cloud, a logical construct on AWS that acts as an isolated set or collection of resources.<BR>
 > **Cloud formation stack**: A collection of AWS resources that you manage as a single unit. 
-See more [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+> See more [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
 
 The `pcluster configure` process has created a Cloud formation stack file called `config` that resides in `~/.parallelcluster`. 
 It is a good idea to read through this (brief) file to see the correspondence between content and the values given in the previous step.
@@ -52,11 +57,17 @@ The procedural now instructs us to modify this file using a text editor to inclu
    * Add `[compute_resource defaultmesh]`
    
    
-There follows some explanation of these additions to `config`. Of particular interest is the section onf **FSx for Lustre**
+There follows some explanation of these additions to `config`. This is really our first insight into "what the switches and dials do"
+and how we could scale up this cluster implementation to apply some serious computer power to a computation. 
+Of particular interest is the section onf **FSx for Lustre**
 with more content referenced [here](https://aws.amazon.com/fsx/lustre/). **FSx for Lustre** is high-performance scalable storage.
 FSx filesystems can also be linked to S3 buckets. 
    
+### Page 3 of Section 3: Configure for Graviton2
 
+Copy the `config` file to a new file called `config-arm` and modify this as directed. As above notes are provided on what 
+the modifications accomplish. 
+   
 
    
 
