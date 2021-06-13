@@ -33,8 +33,14 @@ Moving on to page 2 of topic 3.
         * Choosing 1 or 2 for network configuration enter the single character **`1`**. 
             * This placed the head node on a public subnet (accessible) and the compute instances on a private subnet in the VPC
 
-> Jargon Break
-> **VPC**: Virtual Private Cloud, a logical construct on AWS that acts as an isolated set or collection of resources.
+> Jargon <BR>
+> **VPC**: Virtual Private Cloud, a logical construct on AWS that acts as an isolated set or collection of resources.<BR>
 > **Cloud formation stack**: A collection of AWS resources that you manage as a single unit. 
 See more [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+
+The `pcluster configure` process has created a Cloud formation stack file called `config` that resides in `~/.parallelcluster`. 
+It is a good idea to read through this (brief) file to see the correspondence between content and the values given in the previous step.
+   
+   
+
 
