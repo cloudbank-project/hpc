@@ -4,11 +4,11 @@ This document is notes on building an HPC cluster on AWS.
 
 # Get started notes
 
-* Started at [this page](https://aws.amazon.com/hpc/getting-started/)
-* Sub-selected [this page](https://workshops.aws/categories/HPC)
-* Sub-sub to the [CFD tutorial](https://cfd-on-pcluster.workshop.aws/)
+* Started at [this page](https://aws.amazon.com/hpc/getting-started/) as the root of AWS HPC
+* Sub-selected [this page](https://workshops.aws/categories/HPC) as categorized types of HPC
+* Sub-sub to the [CFD tutorial](https://cfd-on-pcluster.workshop.aws/) to focus on computational fluid dynamics (CFD).
 
-This CFD tutorial breaks down into eight sections. The first two are introductory. This narrative skips to topic 3, "Create a HPC Cluster".
+This CFD tutorial breaks down into eight sections. The first two are introductory so I skip them. This narrative begins with topic 3, "Create a HPC Cluster".
 
 # Topic 3: [Create a HPC Cluster](https://cfd-on-pcluster.workshop.aws/hpccluster/hpc-ssh.html)
 
