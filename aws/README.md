@@ -10,7 +10,7 @@ This document is notes on building an HPC cluster on AWS.
 
 This CFD tutorial breaks down into eight sections. The first two are introductory. This narrative skips to topic 3, "Create a HPC Cluster".
 
-# Topic 3: Create a HPC Cluster](https://cfd-on-pcluster.workshop.aws/hpccluster/hpc-ssh.html)
+# Topic 3: [Create a HPC Cluster](https://cfd-on-pcluster.workshop.aws/hpccluster/hpc-ssh.html)
 
 * A "cloud shell" is available on the AWS Console so I will use that. 
     * The idea here is that the aws command line application **`aws`** can be installed and run in a `bash` environment
@@ -23,5 +23,18 @@ This CFD tutorial breaks down into eight sections. The first two are introductor
 
 Moving on to page 2 of topic 3.
 
-* I installed the necessary packages `botocore, s3transfer, boto3, tabulate, ipaddress, aws-parallelcluster`.
+* I installed **`pcluster`**; necessary packages `botocore, s3transfer, boto3, tabulate, ipaddress, aws-parallelcluster`. One warning.
+    * `pcluster version` gives 2.10.2 and `pcluster -h` gives a lengthy help message: ok
+    * `pcluster configure` is a bit involved; here are my process notes
+        * Enter the ***ssh key name***, not the corresponding ***filename*** (so for example just `cfd_uswest2`)
+        * Head node: Changed to `c5n.large`
+        * Compute instance: Changed to `c5n.18xlarge` (expensive! Don't leave the cluster running!)
+        * Automate VPC creation: We override the default "no" with **`y`**
+        * Choosing 1 or 2 for network configuration enter the single character **`1`**. 
+            * This placed the head node on a public subnet (accessible) and the compute instances on a private subnet in the VPC
+
+> Jargon Break
+> **VPC**: Virtual Private Cloud, a logical construct on AWS that acts as an isolated set or collection of resources.
+> **Cloud formation stack**: A collection of AWS resources that you manage as a single unit. 
+See more [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
 
