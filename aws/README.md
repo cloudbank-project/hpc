@@ -65,8 +65,29 @@ FSx filesystems can also be linked to S3 buckets.
    
 ### Page 3 of Section 3: Configure for Graviton2
 
-Copy the `config` file to a new file called `config-arm` and modify this as directed. As above notes are provided on what 
-the modifications accomplish. 
+   
+[Graviton2](https://aws.amazon.com/ec2/graviton/)
+refers to (second generation) custom ARM processor cores native to AWS. These are intended to optimize spend/compute.
+   
+   
+Copy the `config` file to a new file called `config-arm` and modify this as directed. As previously: For the config
+file modification, the notes provided help unpack what's going on, what the modifications accomplish. In this case note
+that both references to hyperthreading are deleted. Also there is a change for `sanity_check` to `false`.
+   
+   
+***Concerning hyperthreading***: On Graviton2 the number of vCPUs equals the physical CPUs so there is no need to 
+switch off hyperthreading. 
+   
+   
+### Page 4 of Section 3: Create cluster
+   
+   
+Per the `pcluster create cfd -c ~/.parallelcluster/config` command. This takes 10 minutes or so. The same process 
+can be run using the second (Graviton2) config file. 
+
+
+   
+
    
 
    
