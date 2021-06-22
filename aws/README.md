@@ -109,8 +109,19 @@ pcluster ssh cfd -i KEY.pem
    
 Note: We are using `pcluster` here as installed in the AWS bash shell. However there is nothing "special" 
 about working in this AWS shell. We can also install the AWS CLI on a local machine and proceed there.
-   
 
+   
+After verifying the `ssh` connection is ok the tutorial provides a NICE DCV graphical interface. 
+The command is
+   
+```
+pcluster dcv connect cfd --key-path KEY.pem --show-url
+```
+   
+This provides a URL to copy and paste. In my case I had to persevere past a browser security warning
+(Chrome) using the **Advanced** option to "connect anyway". This brings up the interface as a browser
+tab. I found it helpful to click on the word **Activities** (upper left) to arrive at some interactivity. 
+This includes a Terminal window where again we can see we are on the Master instance. 
 
 
    
