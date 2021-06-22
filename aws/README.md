@@ -46,6 +46,9 @@ This CFD tutorial breaks down into eight sections. The first two are introductor
 The `pcluster configure` process has created a Cloud formation stack file called `config` that resides in `~/.parallelcluster`. 
 It is a good idea to read through this (brief) file to see the correspondence between content and the values given in the previous step.
 The procedural now instructs us to modify this file using a text editor to include some additional parameters.
+Before doing this let's observe: The `config` file is created automatically, consisting of a series of `key = value` pairs
+that have context given by section headers, labels in square brackets. The contents represent "everything the `pcluster configure`"
+could figure out automatically. We now go back into this file and edit according to a customization plan. 
    
 * Edit the CloudFormation template file `config` (warning this is a bit arduous)
    * Add three lines under `[cluster default]` and also modify `queue_settings` to be `computer,mesh`
@@ -62,6 +65,7 @@ and how we could scale up this cluster implementation to apply some serious comp
 Of particular interest is the section onf **FSx for Lustre**
 with more content referenced [here](https://aws.amazon.com/fsx/lustre/). **FSx for Lustre** is high-performance scalable storage.
 FSx filesystems can also be linked to S3 buckets. 
+   
    
 ### Page 3 of Section 3: Configure for Graviton2
 
@@ -83,7 +87,30 @@ switch off hyperthreading.
    
    
 Per the `pcluster create cfd -c ~/.parallelcluster/config` command. This takes 10 minutes or so. The same process 
-can be run using the second (Graviton2) config file. 
+can be run using the second (Graviton2) config file.
+
+The cluster will consist of a **Master** instance and **Compute** instances, per the `config` file. 
+At this point only the **Master** instance is running. 
+Both Master and Compute have associated *private* subnets. 
+We can click on the Master EC2 instance in the Instances table to look at details.
+The instance summary will provide a subnet-ID that matches the value in the config file; and so on. 
+
+> Notice that in the `pcluster create` command the first argument was the cluster ***name*** **`cfd`**. 
+> This is how we refer to the cluster by name. (CFD = Computational Fluid Dynamics) 
+   
+
+### Page 5 of Section 3: Connect to cluster
+   
+We now use the `pcluster` utility to connect to the **Master** instance.
+   
+```
+pcluster ssh cfd -i KEY.pem
+```
+   
+Note: We are using `pcluster` here as installed in the AWS bash shell. However there is nothing "special" 
+about working in this AWS shell. We can also install the AWS CLI on a local machine and proceed there.
+   
+
 
 
    
