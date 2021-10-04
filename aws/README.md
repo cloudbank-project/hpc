@@ -1,6 +1,7 @@
 # Introduction
 
-This document is notes on building an HPC cluster on AWS.
+This document is notes on building an HPC cluster on AWS. Please note that using FSx filesystems like Lustre can be expensive so
+as always be sure to monitor your resources and what they are costing.
 
 # Procedural notes
 
@@ -64,7 +65,7 @@ There follows some explanation of these additions to `config`. This is really ou
 and how we could scale up this cluster implementation to apply some serious computer power to a computation. 
 Of particular interest is the section onf **FSx for Lustre**
 with more content referenced [here](https://aws.amazon.com/fsx/lustre/). **FSx for Lustre** is high-performance scalable storage.
-FSx filesystems can also be linked to S3 buckets. 
+FSx filesystems can also be linked to S3 buckets. **Lustre FSx can be expensive when left running for long periods!!!**
    
    
 ### Page 3 of Section 3: Configure for Graviton2
